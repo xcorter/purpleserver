@@ -22,8 +22,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'c7c)b&+b$!)5iy$02_=x&_p3kx^637ux*50a@p2f)c)hps4*o@'
 
+isDev = ""
+configPath = os.path.join(os.path.dirname(__file__), ".config")
+if os.path.exists(configPath):
+    with open(configPath, "r") as config:
+        isDev = config.read().replace('\n', '')
+if isDev == "dev":
+    debug = True
+else:
+    debug = False
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = debug
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -32,6 +42,7 @@ ALLOWED_HOSTS = [
     '192.168.1.4',
     '192.168.1.5',
     '192.168.1.6',
+    '80.240.130.16',
 ]
 
 
